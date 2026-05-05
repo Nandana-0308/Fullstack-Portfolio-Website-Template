@@ -1,0 +1,29 @@
+# ======================
+# FRONTEND (React)
+# ======================
+portfolio_frontend/node_modules/
+portfolio_frontend/dist/
+portfolio_frontend/build/
+
+# ======================
+# BACKEND (Spring Boot)
+# ======================
+sahal_portfolio_backend/target/
+*.jar
+
+# ======================
+# IDE files
+# ======================
+.vscode/
+.idea/
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# Logs
+# ======================
+*.log
