@@ -1,27 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import demoVideo from "../assets/projectImageOrVideo/portfolioDemo.mp4";
-import demoVideo from "../assets/projectImageOrVideo/demo1.mp4";
-import demoImage from "../assets/projectImageOrVideo/webimagedemo.jpg";
-
-const projects = [
-  {
-    id: 1,
-    title: "AutoDevOps",
-    image: demoImage,
-    video: demoVideo,
-    description:
-      "Automates CI/CD pipelines using Docker and GitHub Actions.",
-    tech: ["React", "Node.js", "Docker"],
-    github: "https://github.com/yourrepo",
-    live: "https://yourlive.com",
-  },
-];
+import { APP_DATA } from "../constants/appData";
 
 const Projects = ({ theme }) => {
   const [activeProject, setActiveProject] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  // ESC key handling
+  const projects = APP_DATA.projects; // ✅ using centralized data
+
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") {
@@ -39,12 +24,10 @@ const Projects = ({ theme }) => {
 
   return (
     <section className="py-5 px-5">
-      {/* Title */}
       <h2 className="text-center text-xl md:text-2xl text-[var(--color-color6)] mb-10">
         <span className="text-3xl md:text-5xl">P</span>rojects
       </h2>
 
-      {/* Project Cards */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 px-10 md:px-20">
         {projects.map((project) => (
           <div
@@ -52,7 +35,6 @@ const Projects = ({ theme }) => {
             onClick={() => setActiveProject(project)}
             className="glass cursor-pointer rounded-2xl border border-white/10 overflow-hidden hover:scale-105 hover:shadow-[0_0_20px_#00C2FF] transition-all duration-300"
           >
-            {/* 🔹 Media Preview */}
             <div className="w-full h-40 overflow-hidden">
               {project.video ? (
                 <video
@@ -71,7 +53,6 @@ const Projects = ({ theme }) => {
               )}
             </div>
 
-            {/* 🔹 Content */}
             <div className="p-5">
               <h3 className="text-xl font-semibold text-[var(--color-primary)]">
                 {project.title}
@@ -93,7 +74,6 @@ const Projects = ({ theme }) => {
           } backdrop-blur-md z-50`}
           onClick={() => setActiveProject(null)}
         >
-          {/* Card */}
           <div
             onClick={(e) => e.stopPropagation()}
             className={`w-full max-w-5xl rounded-2xl overflow-hidden flex flex-col lg:flex-row animate-modal cursor-pointer active:scale-[0.98] transition-transform glass
@@ -103,7 +83,6 @@ const Projects = ({ theme }) => {
                 : "border border-white/10 shadow-[0_0_40px_rgba(0,194,255,0.25)]"
             }`}
           >
-            {/* 🔹 Left - Image / Video */}
             <div
               className="lg:w-1/2 w-full h-[250px] sm:h-[320px] lg:h-full overflow-hidden group"
               onClick={(e) => {
@@ -128,7 +107,6 @@ const Projects = ({ theme }) => {
               )}
             </div>
 
-            {/* 🔹 Right - Content */}
             <div className="lg:w-1/2 w-full p-6 flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)]">
@@ -180,7 +158,7 @@ const Projects = ({ theme }) => {
         </div>
       )}
 
-      {/* 🔥 Fullscreen Media */}
+      {/* Fullscreen */}
       {isFullScreen && activeProject && (
         <div
           className="fixed inset-0 bg-black z-[100] flex items-center justify-center"

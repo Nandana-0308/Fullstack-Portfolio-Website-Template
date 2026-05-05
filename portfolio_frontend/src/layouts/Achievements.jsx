@@ -1,72 +1,11 @@
 import React, { useState } from 'react'
-
-const categories = [
-    {
-        id: "certifications",
-        title: "Certifications",
-        items: [
-            {
-                title: "Java Full Stack Development",
-                desc: "Completed full stack training with projects",
-                details: " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis, dolorum deserunt dolores vel neque voluptas voluptatibus veritatis voluptatum asperiores debitis, natus adipisci commodi mollitia laboriosam exercitationem magni cupiditate iure vero?"
-            }, {
-                title: "Java Full Stack Development",
-                desc: "Completed full stack training with projects",
-                details: "Covered Java, Spring Boot, React, and MySQL"
-            }, {
-                title: "Java Full Stack Development",
-                desc: "Completed full stack training with projects",
-                details: "Covered Java, Spring Boot, React, and MySQL"
-            }
-        ]
-    },
-    {
-        id: "hackathons",
-        title: "Hackathons",
-        items: [
-            {
-                title: "NASA Hackathon",
-                desc: "Participated in global hackathon",
-                details: "Worked on real-world space data challenges"
-            }, {
-                title: "NASA Hackathon",
-                desc: "Participated in global hackathon",
-                details: "Worked on real-world space data challenges"
-            },
-            {
-                title: "NASA Hackathon",
-                desc: "Participated in global hackathon",
-                details: "Worked on real-world space data challenges"
-            }
-        ]
-    },
-    {
-        id: "courses",
-        title: "Courses",
-        items: [
-            {
-                title: "React Course",
-                desc: "Learned React fundamentals",
-                details: "Hooks, routing, state management"
-            }
-        ]
-    },
-    {
-        id: "milestones",
-        title: "Milestones",
-        items: [
-            {
-                title: "Portfolio Project",
-                desc: "Built personal portfolio",
-                details: "Fully responsive using React + Tailwind"
-            }
-        ]
-    }
-]
+import { APP_DATA } from "../constants/appData";
 
 const Achievements = () => {
     const [activeCategory, setActiveCategory] = useState(null)
     const [expandedItem, setExpandedItem] = useState(null)
+
+    const categories = APP_DATA.categories; 
 
     return (
         <section className="py-10 ">
@@ -78,9 +17,9 @@ const Achievements = () => {
             </h1>
 
             {/* CATEGORY STACK */}
-            <div className="flex flex-wrap justify-center  gap-20 mb-12 ">
+            <div className="flex flex-wrap justify-center gap-20 mb-12 ">
 
-                {categories.map((cat, index) => (
+                {categories.map((cat) => (
                     <div
                         key={cat.id}
                         onClick={() => {
@@ -111,14 +50,14 @@ const Achievements = () => {
                 ))}
             </div>
 
-            {/*  DETAILS SECTION */}
+            {/* DETAILS SECTION */}
             {activeCategory && (
                 <div className="max-w-6xl mx-auto px-5 
                     grid sm:grid-cols-2 gap-15 animate-fade-in">
 
                     {categories
                         .find(c => c.id === activeCategory)
-                        .items.map((item, index) => (
+                        ?.items.map((item, index) => (
 
                             <div key={index} className="p-5 rounded-xl 
                                 bg-[var(--color-baseColor)] border border-white/10">

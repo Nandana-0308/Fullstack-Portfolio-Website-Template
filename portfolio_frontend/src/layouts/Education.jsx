@@ -1,36 +1,11 @@
 import React from 'react'
+import { APP_DATA } from "../constants/appData";
 
-const educationData = [
-  {
-    title: "B.Tech in Computer Science",
-    place: "XYZ College",
-    year: "2022 – 2026",
-    desc: "Focused on Web Development & Cyber Security"
-  },
-  {
-    title: "Higher Secondary",
-    place: "ABC School",
-    year: "2020 – 2022",
-    desc: "Percentage: 92%"
-  }
-]
+const Education = () => {
 
-const experienceData = [
-  {
-    title: "React Portfolio Project",
-    place: "Personal Project",
-    year: "2026",
-    desc: "Built responsive portfolio using React & Tailwind"
-  },
-  {
-    title: "Cyber Security Certification",
-    place: "Online Course",
-    year: "2025",
-    desc: "Hands-on training in ethical hacking"
-  }
-]
+  const educationData = APP_DATA.education;
+  const experienceData = APP_DATA.experience;
 
-const Education = ({ theme }) => {
   return (
     <section className="py-5">
       
@@ -55,13 +30,11 @@ const Education = ({ theme }) => {
             {educationData.map((item, index) => (
               <div key={index} className="relative">
 
-                {/* Dot */}
                 <div className="md:block absolute 
                   right-[-25px] top-2 w-3 h-3 
                   bg-[var(--color-primary)] rounded-full">
                 </div>
 
-                {/* Card */}
                 <div className="p-5 rounded-xl 
                   bg-[var(--color-baseColor)] 
                   border border-[var(--color-color5)]">
@@ -91,13 +64,11 @@ const Education = ({ theme }) => {
             {experienceData.map((item, index) => (
               <div key={index} className="relative">
 
-                {/* Dot */}
                 <div className="hidden md:block absolute 
                   left-[-25px] top-2 w-3 h-3 
                   bg-[var(--color-primary)] rounded-full">
                 </div>
 
-                {/* Card */}
                 <div className="p-5 rounded-xl 
                   bg-[var(--color-baseColor)] 
                   border border-[var(--color-color5)]">
