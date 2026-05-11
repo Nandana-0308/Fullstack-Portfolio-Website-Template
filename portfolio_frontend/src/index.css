@@ -1,10 +1,7 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-
-
-/* @theme */
- /* 🌙 Default Dark Theme */
+/* 🌙 Default Dark Theme */
 :root {
   --color-baseColor: #0B0F19;
   --color-primary: #00C2FF;
@@ -16,14 +13,13 @@
 
 /* ☀️ Light Theme */
 .light {
-  --color-baseColor: #F8FAFC;   /* soft white */
-  --color-primary: #0EA5E9;     /* cleaner blue */
-  --color-color3: #64748B;
-  --color-color4: #E2E8F0;
-  --color-color5: #CBD5E1;
-  --color-color6: #0F172A;
+  --color-baseColor: #FFFDF7;
+  --color-primary: #F59E0B;
+  --color-color3: #A16207;
+  --color-color4: #FEF3C7;
+  --color-color5: #FDE68A;
+  --color-color6: #1F2937;
 }
-
 
 @layer base {
   html {
@@ -32,43 +28,47 @@
 
   body {
     background-color: var(--color-baseColor);
-  font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Poppins', Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  /* ✅ Light theme text fix */
+  .light body {
+    color: var(--color-color6);
   }
 }
 
 @layer components {
   .glass {
     background: rgba(0, 194, 255, 0.15);
-    /* transparent */
     backdrop-filter: blur(16px);
-    /* border-radius: 12px; */
     padding: 20px;
   }
 
-
-
+  /* ✅ Light theme glass fix */
+  .light .glass {
+    background: rgba(245, 158, 11, 0.15);
+  }
 }
 
-/* The Outer Container (The Border Path) */
+/* The Outer Container */
 .animated-border-btn {
   position: relative;
-  padding: 2px; /* This defines the thickness of the animated line */
+  padding: 2px;
   overflow: hidden;
   border-radius: 9999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1); /* Faint track for the line */
+  background: rgba(255, 255, 255, 0.1);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* The Revolving Line - Always Visible */
+/* Rotating border */
 .animated-border-btn::before {
   content: '';
   position: absolute;
   width: 150%;
   height: 300%;
-  /* Adjust colors: transparent background with a sharp primary colored "streak" */
   background: conic-gradient(
     from 0deg,
     transparent 0%,
@@ -78,13 +78,18 @@
   animation: rotate 2s linear infinite;
 }
 
-/* Hover "Projection" Effect */
+/* Hover effect */
 .animated-border-btn:hover {
-  transform: scale(1.03); /* Lifts the button toward the user */
-  box-shadow: 0 0 25px rgba(0, 194, 255, 0.4); /* Glow effect */
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 194, 255, 0.4);
 }
 
-/* The Inner Button Content */
+/* ✅ Light theme glow fix */
+.light .animated-border-btn:hover {
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+}
+
+/* Inner button */
 .btn-inner-content {
   position: relative;
   z-index: 10;
@@ -95,21 +100,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* Initial Colors */
-  background: var(--color-baseColor); /* Solid dark background to hide the center of the gradient */
+
+  background: var(--color-baseColor);
   color: var(--color-primary, #00c2ff);
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
-/* Hover State: Color Swap */
-.animated-border-btn:hover .btn-inner-content {
-  background: var(--color-primary, #00c2ff);
-  color: #ffffff; /* Text turns white on primary background */
+/* ✅ Light theme button fix */
+.light .btn-inner-content {
+  background: #ffffff;
+  color: var(--color-primary);
 }
 
-
+/* Hover swap */
+.animated-border-btn:hover .btn-inner-content {
+  background: var(--color-primary, #00c2ff);
+  color: #ffffff;
+}
 
 @layer utilities {
   @keyframes fade-in {
@@ -118,7 +126,6 @@
       transform: translateY(20px);
       filter: blur(10px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
@@ -126,76 +133,77 @@
     }
   }
 
-@keyframes float {
-  0%,100%{
-    transform: translateY(0);
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
   }
-  50%{
-    transform: translateY(-10px);
-  }
-}
 
-@keyframes marquee {
-  0%{
-    transform: translateX(0);
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
-  100%{
-    transform: translateX(-50%);
-  }
-}
 
-@keyframes modal-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(40px);
+  @keyframes modal-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
   }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
 
-.animate-modal {
-  animation: modal-in 0.4s ease-out;
-}
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-modal {
+    animation: modal-in 0.4s ease-out;
+  }
 
   .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
   }
 
-.animate-float{
-animation: float 4s ease-in-out infinite;
-}
-
-.animate-marquee{
-  animation: marquee 30s linear infinite;
-}
-
- .animation-delay-100{
-    animation-delay: 100ms;
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 
-  .animation-delay-200{
-    animation-delay: 200ms;
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
 
-  .animation-delay-400{
-    animation-delay: 400ms;
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
   }
 
-  .animation-delay-600{
-    animation-delay: 600ms;
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+
+  /* ✅ NEW: Hero gradient for light theme */
+  .light .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      #FEF3C7 0%,
+      #FDE68A 40%,
+      #F59E0B 100%
+    );
   }
 
-.group:hover .animate-marquee {
-  animation-play-state: paused;
-}
+  /* ✅ Optional highlight text */
+  .light .highlight-text {
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
 
-  @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  .light .brush-text {
+    background: linear-gradient(90deg, #F59E0B, #FBBF24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
- 
-
-}
-

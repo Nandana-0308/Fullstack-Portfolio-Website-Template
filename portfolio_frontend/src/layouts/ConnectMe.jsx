@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import.meta.env;
 
 const ConnectMe = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,9 @@ const ConnectMe = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/contact", {
+      console.log(`here the api url ${import.meta.env.VITE_APP_API_URL}`);
+      
+      const response = await fetch(`${import.meta.env.VITE_APP_API_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +52,7 @@ const ConnectMe = () => {
   };
 
   return (
-    <section className="py-20 flex items-center justify-center px-4">
+    <section id="connect" className="py-20 flex items-center justify-center px-4">
       
       <div className="glass w-full max-w-2xl rounded-2xl shadow-lg">
         

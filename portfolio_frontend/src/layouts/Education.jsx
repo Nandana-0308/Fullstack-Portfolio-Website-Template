@@ -7,7 +7,7 @@ const Education = () => {
   const experienceData = APP_DATA.experience;
 
   return (
-    <section className="py-5">
+    <section id='education' className="py-5">
       
       {/* Heading */}
       <h1 className="text-center text-xl md:text-2xl 

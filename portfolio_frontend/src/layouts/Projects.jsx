@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { APP_DATA } from "../constants/appData";
+import { X } from "lucide-react";
 
 const Projects = ({ theme }) => {
   const [activeProject, setActiveProject] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const projects = APP_DATA.projects; // ✅ using centralized data
+  const projects = APP_DATA.projects;
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -23,7 +24,7 @@ const Projects = ({ theme }) => {
   }, [isFullScreen]);
 
   return (
-    <section className="py-5 px-5">
+    <section id="projects" className="py-5 px-5">
       <h2 className="text-center text-xl md:text-2xl text-[var(--color-color6)] mb-10">
         <span className="text-3xl md:text-5xl">P</span>rojects
       </h2>
@@ -33,7 +34,16 @@ const Projects = ({ theme }) => {
           <div
             key={project.id}
             onClick={() => setActiveProject(project)}
-            className="glass cursor-pointer rounded-2xl border border-white/10 overflow-hidden hover:scale-105 hover:shadow-[0_0_20px_#00C2FF] transition-all duration-300"
+            className={`
+              glass cursor-pointer rounded-2xl overflow-hidden 
+              transition-all duration-300
+              hover:scale-105
+              ${
+                theme === "light"
+                  ? "border border-black/10 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)]"
+                  : "border border-white/10 hover:shadow-[0_0_20px_#00C2FF]"
+              }
+            `}
           >
             <div className="w-full h-40 overflow-hidden">
               {project.video ? (
@@ -70,19 +80,41 @@ const Projects = ({ theme }) => {
       {activeProject && (
         <div
           className={`fixed inset-0 flex items-center justify-center ${
-            theme === "light" ? "bg-white/10" : "bg-black/10"
+            theme === "light" ? "bg-white/20" : "bg-black/30"
           } backdrop-blur-md z-50`}
           onClick={() => setActiveProject(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`w-full max-w-5xl rounded-2xl overflow-hidden flex flex-col lg:flex-row animate-modal cursor-pointer active:scale-[0.98] transition-transform glass
-            ${
-              theme === "light"
-                ? " border border-black/10 shadow-xl"
-                : "border border-white/10 shadow-[0_0_40px_rgba(0,194,255,0.25)]"
-            }`}
+            className={`
+              relative w-full max-w-5xl rounded-2xl overflow-hidden 
+              flex flex-col lg:flex-row animate-modal 
+              cursor-pointer active:scale-[0.98] transition-transform glass
+              ${
+                theme === "light"
+                  ? "border border-black/10 shadow-xl"
+                  : "border border-white/10 shadow-[0_0_40px_rgba(0,194,255,0.25)]"
+              }
+            `}
           >
+            {/* Close Icon */}
+            <button
+              onClick={() => setActiveProject(null)}
+              className={`
+                absolute top-4 right-4 z-50
+                p-2 rounded-full backdrop-blur-md
+                transition-all duration-300 hover:scale-110
+                ${
+                  theme === "light"
+                    ? "bg-white/70 text-black hover:bg-[var(--color-primary)] hover:text-white shadow-md"
+                    : "bg-black/40 text-white hover:bg-[var(--color-primary)] hover:text-black hover:shadow-[0_0_10px_var(--color-primary)]"
+                }
+              `}
+            >
+              <X size={20} />
+            </button>
+
+            {/* Media */}
             <div
               className="lg:w-1/2 w-full h-[250px] sm:h-[320px] lg:h-full overflow-hidden group"
               onClick={(e) => {
@@ -107,6 +139,7 @@ const Projects = ({ theme }) => {
               )}
             </div>
 
+            {/* Content */}
             <div className="lg:w-1/2 w-full p-6 flex flex-col justify-between">
               <div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-[var(--color-primary)]">
@@ -117,11 +150,19 @@ const Projects = ({ theme }) => {
                   {activeProject.description}
                 </p>
 
+                {/* Tech tags */}
                 <div className="flex flex-wrap gap-2 mt-6">
                   {activeProject.tech.map((t, i) => (
                     <span
                       key={i}
-                      className="text-xs sm:text-sm px-3 py-1 rounded-full bg-[var(--color-color5)] text-[var(--color-primary)]"
+                      className={`
+                        text-xs sm:text-sm px-3 py-1 rounded-full
+                        ${
+                          theme === "light"
+                            ? "bg-[var(--color-color4)] text-[var(--color-primary)]"
+                            : "bg-[var(--color-color5)] text-[var(--color-primary)]"
+                        }
+                      `}
                     >
                       {t}
                     </span>
@@ -129,6 +170,7 @@ const Projects = ({ theme }) => {
                 </div>
               </div>
 
+              {/* Buttons */}
               <div className="flex gap-4 mt-6 flex-wrap">
                 {activeProject.github && (
                   <a href={activeProject.github} target="_blank" rel="noreferrer">
@@ -145,13 +187,6 @@ const Projects = ({ theme }) => {
                     </div>
                   </a>
                 )}
-
-                <button
-                  onClick={() => setActiveProject(null)}
-                  className="animated-border-btn"
-                >
-                  <span className="btn-inner-content">Close</span>
-                </button>
               </div>
             </div>
           </div>

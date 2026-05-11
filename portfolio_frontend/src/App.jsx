@@ -4,7 +4,7 @@ import Education from "./layouts/Education";
 import Hero from "./layouts/Hero";
 import Navbar from "./layouts/Navbar";
 import TechSkills from "./layouts/TechSkills";
-// import Achievements from "./layouts/Achievements";
+import Achievements from "./layouts/Achievements";
 import Projects from "./layouts/Projects";
 import Footer from "./layouts/Footer";
 import ConnectMe from "./layouts/ConnectMe";
@@ -34,10 +34,10 @@ function App() {
         to-[var(--color-baseColor)] 
         overflow-hidden"
       >
-        <Education theme={theme}/>
-        <Projects theme={theme}/>
-        {/* <Achievements /> */}
-        <TechSkills />
+        <Education theme={theme} />
+        <Projects theme={theme} />
+        {/* <Achievements theme={theme} /> */}
+        <TechSkills theme={theme} />
         <ConnectMe />
         <Footer />
       </div>

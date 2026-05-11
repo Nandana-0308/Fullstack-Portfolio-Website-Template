@@ -5,11 +5,11 @@ import { Menu, X } from 'lucide-react';
 import ThemeToggle from "../components/ThemeToggle";
 
 const navLinks = [
-    { ref: "/", label: "about" },
-    { ref: "/skills", label: "skills" },
-    { ref: "/projects", label: "projects" },
-    { ref: "/contact", label: "contact" },
-    // { ref: "/achivments", label: "achivments" },
+    { ref: "#hero", label: "about" },
+    { ref: "#techskills", label: "skills" },
+    { ref: "#projects", label: "projects" },
+    { ref: "#footer", label: "contact" },
+    // { ref: "#achivments", label: "achivments" },
 ]
 
 //Accept props here
@@ -40,7 +40,7 @@ const Navbar = ({ theme, setTheme }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
-        <header
+        <header id='navbar'
             className={`
                 fixed top-0 left-0 right-0 z-50
                 transition-all duration-500
@@ -61,25 +61,28 @@ const Navbar = ({ theme, setTheme }) => {
 
                 {/* Nav Links */}
                 <div className={`hidden sm:flex
-                    items-center gap-2 
-                    rounded-full px-3 py-2
-                    ${theme == 'light' ? 'bg-black/5' : 'bg-white/5'} backdrop-blur-x
-                    border border-white/10`}>
+                            items-center gap-2 
+                            rounded-full px-3 py-2
+                            ${theme == 'light' ? 'bg-black/4' : 'bg-white/5'} border border-white/10
+                            backdrop-blur-md
+                            border
+                        `}>
                     {navLinks.map((link, index) => (
                         <a
                             key={index}
                             href={link.ref}
-                            className="
-                                px-4 py-2 text-sm text-[var(--color-color6)] rounded-full
-                                transition-all duration-300
-                                hover:bg-black/10
-                                hover:text-[var(--color-primary)]
-                                focus:outline-none
-                                focus:ring-2
-                                focus:ring-[var(--color-primary)]
-                                hover:scale-105
-                                hover:shadow-[0_0_10px_#00C2FF]
-                            "
+                            className={`
+                px-4 py-2 text-sm text-[var(--color-color6)] rounded-full
+                transition-all duration-300
+                hover:text-[var(--color-primary)]
+                focus:outline-none
+                focus:ring-2 focus:ring-[var(--color-primary)]
+                hover:scale-105
+                ${theme === "light"
+                                    ? "hover:bg-black/10 hover:shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                                    : "hover:bg-white/10 hover:shadow-[0_0_10px_#00C2FF]"
+                                }
+            `}
                         >
                             {link.label}
                         </a>
@@ -88,16 +91,18 @@ const Navbar = ({ theme, setTheme }) => {
 
                 {/* Desktop Right Section */}
                 <div className="hidden sm:flex items-center gap-4">
-                    <Button buttonName="Contact Me" size='sm' />
+                    <a href="#connect">
+                        <Button buttonName="Contact Me" size='sm' />
+                    </a>
 
-                    {/* ✅ Theme Toggle */}
+                    {/* Theme Toggle */}
                     <ThemeToggle theme={theme} setTheme={setTheme} />
                 </div>
 
                 {/* Mobile Section */}
                 <div className="sm:hidden flex items-center gap-3">
 
-                    {/* ✅ Theme Toggle (Mobile) */}
+                    {/* Theme Toggle (Mobile) */}
                     <ThemeToggle theme={theme} setTheme={setTheme} />
 
                     {/* Menu Button */}
@@ -139,16 +144,19 @@ const Navbar = ({ theme, setTheme }) => {
                             <a
                                 key={index}
                                 href={link.ref}
-                                className="
-                                    px-4 py-2 text-sm text-[var(--color-color6)] rounded-full
-                                    transition-all duration-300
-                                    hover:bg-white/10
-                                    hover:text-[var(--color-primary)]
-                                    focus:ring-1
-                                    focus:ring-[var(--color-primary)]
-                                    hover:scale-105
-                                    hover:shadow-[0_0_10px_#00C2FF]
-                                "
+                                className={`
+    px-4 py-2 text-sm text-[var(--color-color6)] rounded-full
+    transition-all duration-300
+    hover:text-[var(--color-primary)]
+    focus:ring-1
+    focus:ring-[var(--color-primary)]
+    hover:scale-105
+
+    ${theme === "light"
+                                        ? "hover:bg-black/10 hover:shadow-[0_0_10px_rgba(245,158,11,0.5)]"
+                                        : "hover:bg-white/10 hover:shadow-[0_0_10px_#00C2FF]"
+                                    }
+`}
                             >
                                 {link.label}
                             </a>
@@ -156,7 +164,9 @@ const Navbar = ({ theme, setTheme }) => {
                     </div>
 
                     <div className='px-5 py-2'>
-                        <Button buttonName="Contact Me" size='sm' />
+                        <a href="#connect">
+                            <Button buttonName="Contact Me" size='sm' />
+                        </a>
                     </div>
                 </div>
             )}

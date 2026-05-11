@@ -1,5 +1,5 @@
 import logo from "../assets/logo.jpg";
-import profile from "../assets/p.jpeg";
+import profile from "../assets/p2.png";
 
 import demoVideo from "../assets/projectImageOrVideo/demo1.mp4";
 import demoImage from "../assets/projectImageOrVideo/webimagedemo.jpg";
@@ -9,7 +9,17 @@ export const APP_DATA = {
   owner: "Sahal P T",
   logo: logo,
 
- 
+  skills: [
+    { name: "HTML", level: 90 },
+    { name: "CSS", level: 85 },
+    { name: "JavaScript", level: 80 },
+    { name: "React", level: 85 },
+    { name: "Tailwind CSS", level: 90 },
+    { name: "Node.js", level: 70 },
+    { name: "Git", level: 75 },
+    { name: "Cyber Security", level: 60 }
+  ],
+
   categories: [
     {
       id: "certifications",
@@ -35,7 +45,7 @@ export const APP_DATA = {
     }
   ],
 
- 
+
   education: [
     {
       title: "B.Tech in Computer Science",
@@ -51,7 +61,7 @@ export const APP_DATA = {
     }
   ],
 
- 
+
   experience: [
     {
       title: "React Portfolio Project",

@@ -5,11 +5,10 @@ px-5 py-2 rounded-full text-sm w-full text-center
 bg-[var(--color-primary)] text-[var(baseColor)]
 transition-all duration-300 ease-in-out
 hover:scale-105
-hover:shadow-[0_0_10px_#00C2FF]
-focus:ring-2 focus:ring-cyan-400
-focus:shadow-[0_0_20px_#00C2FF]
+hover:shadow-[0_0_10px_var(--color-primary)]
+focus:ring-2 focus:ring-[var(--color-primary)]
+focus:shadow-[0_0_20px_var(--color-primary)]
 active:scale-95
-
 `
 
 const sizeClasses = {

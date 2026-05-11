@@ -10,7 +10,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-full 
+    <footer id='footer' className="w-full 
       bg-[var(--color-baseColor)] 
       text-[var(--color-color6)] 
       px-6 py-6 
