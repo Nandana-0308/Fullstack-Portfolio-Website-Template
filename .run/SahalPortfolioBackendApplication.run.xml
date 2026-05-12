@@ -3,7 +3,7 @@
     <option name="envFilePaths">
       <option value="$PROJECT_DIR$/portfolio_backend/.env" />
     </option>
-    <option name="MAIN_CLASS_NAME" value="com.example.sahal_portfolio_backend.SahalPortfolioBackendApplication" />
+    <option name="MAIN_CLASS_NAME" value="com.example.sahal_portfolio_backend." />
     <module name="sahal_portfolio_backend" />
     <extension name="coverage">
       <pattern>
