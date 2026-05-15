@@ -21,44 +21,62 @@ public class EmailService {
     public void sendMail(String name, String email, String message) {
 
         // =========================
-        // Mail to You
+        // Mail to Owner
         // =========================
 
-        SimpleMailMessage ownerMail = new SimpleMailMessage();
+        try {
 
-        ownerMail.setFrom(ownerEmail);
-        ownerMail.setTo(ownerEmail);
+            SimpleMailMessage ownerMail = new SimpleMailMessage();
 
-        ownerMail.setSubject("New Portfolio Contact Message from " + name);
+            ownerMail.setFrom(ownerEmail);
+            ownerMail.setTo(ownerEmail);
 
-        ownerMail.setText(
-                "Name : " + name + "\n" +
-                        "Email : " + email + "\n\n" +
-                        "Message :\n" + message
-        );
+            ownerMail.setSubject("New Portfolio Contact Message from " + name);
 
-        mailSender.send(ownerMail);
+            ownerMail.setText(
+                    "Name : " + name + "\n" +
+                            "Email : " + email + "\n\n" +
+                            "Message :\n" + message
+            );
+
+            mailSender.send(ownerMail);
+
+            System.out.println("Owner mail sent successfully");
+
+        } catch (Exception e) {
+
+            System.out.println("Owner mail failed: " + e.getMessage());
+        }
 
 
         // =========================
         // Confirmation Mail to Client
         // =========================
 
-        SimpleMailMessage clientMail = new SimpleMailMessage();
+        try {
 
-        clientMail.setFrom(ownerEmail);
-        clientMail.setTo(email);
+            SimpleMailMessage clientMail = new SimpleMailMessage();
 
-        clientMail.setSubject("Message Received Successfully");
+            clientMail.setFrom(ownerEmail);
+            clientMail.setTo(email);
 
-        clientMail.setText(
-                "Hi " + name + ",\n\n" +
-                        "Thank you for contacting me through my portfolio website.\n\n" +
-                        "I have received your message and will get back to you soon.\n\n" +
-                        "Regards,\n" +
-                        clientName
-        );
+            clientMail.setSubject("Message Received Successfully");
 
-        mailSender.send(clientMail);
+            clientMail.setText(
+                    "Hi " + name + ",\n\n" +
+                            "Thank you for contacting me through my portfolio website.\n\n" +
+                            "I have received your message and will get back to you soon.\n\n" +
+                            "Regards,\n" +
+                            clientName
+            );
+
+            mailSender.send(clientMail);
+
+            System.out.println("Client mail sent successfully");
+
+        } catch (Exception e) {
+
+            System.out.println("Client mail failed: " + e.getMessage());
+        }
     }
 }
