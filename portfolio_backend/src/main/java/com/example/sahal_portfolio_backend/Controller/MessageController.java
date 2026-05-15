@@ -24,19 +24,19 @@ public class MessageController {
         // Save in DB
         Message savedMessage = service.saveMessage(message);
 
-//        // Try sending email
-//        try {
-//
-//            emailService.sendMail(
-//                    message.getName(),
-//                    message.getEmail(),
-//                    message.getMessage()
-//            );
-//
-//        } catch (Exception e) {
-//
-//            System.out.println("Email sending failed: " + e.getMessage());
-//        }
+        // Try sending email
+        try {
+
+            emailService.sendMail(
+                    message.getName(),
+                    message.getEmail(),
+                    message.getMessage()
+            );
+
+        } catch (Exception e) {
+
+            System.out.println("Email sending failed: " + e.getMessage());
+        }
 
         return ResponseEntity.ok(savedMessage);
     }
