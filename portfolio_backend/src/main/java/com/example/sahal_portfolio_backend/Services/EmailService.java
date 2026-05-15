@@ -26,9 +26,10 @@ public class EmailService {
 
         SimpleMailMessage ownerMail = new SimpleMailMessage();
 
+        ownerMail.setFrom(ownerEmail);
         ownerMail.setTo(ownerEmail);
 
-        ownerMail.setSubject("New Portfolio Contact Message from "+name);
+        ownerMail.setSubject("New Portfolio Contact Message from " + name);
 
         ownerMail.setText(
                 "Name : " + name + "\n" +
@@ -45,6 +46,7 @@ public class EmailService {
 
         SimpleMailMessage clientMail = new SimpleMailMessage();
 
+        clientMail.setFrom(ownerEmail);
         clientMail.setTo(email);
 
         clientMail.setSubject("Message Received Successfully");
