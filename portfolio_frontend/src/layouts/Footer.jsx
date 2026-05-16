@@ -37,15 +37,19 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
-            p-2 rounded-full
-            border border-[var(--color-color5)]/40
-            text-[var(--color-color6)]
-            hover:text-[var(--color-primary)]
-            hover:border-[var(--color-primary)]
-            hover:shadow-[0_0_10px_var(--color-primary)]
-            hover:scale-110
-            transition-all duration-300
-          "
+  p-2 rounded-full
+  border border-[var(--color-primary)]
+  text-[var(--color-primary)]
+  shadow-[0_0_10px_var(--color-primary)]
+  scale-100
+
+  hover:bg-[var(--color-primary)]
+  hover:text-white
+  hover:shadow-[0_0_20px_var(--color-primary)]
+  hover:scale-110
+
+  transition-all duration-300
+"
               >
                 <Icon size={18} />
               </a>
