@@ -15,7 +15,7 @@ public class EmailService {
     @Value("${client.name}")
     private String clientName;
 
-    @Value("${MAIL_USERNAME}")
+    @Value("${spring.mail.username}")
     private String ownerEmail;
 
     public void sendMail(String name, String email, String message) {
