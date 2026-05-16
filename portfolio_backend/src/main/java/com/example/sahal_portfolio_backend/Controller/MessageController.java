@@ -18,6 +18,12 @@ public class MessageController {
     @Autowired
     private EmailService emailService;
 
+    @GetMapping("/test")
+    public ResponseEntity<String> testApi() {
+
+        return ResponseEntity.ok("Backend is running successfully");
+    }
+
     @PostMapping
     public ResponseEntity<?> sendMessage(@RequestBody Message message) {
 
