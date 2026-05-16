@@ -15,7 +15,7 @@
               {/* ${theme === 'light' ? 'hero-gradient' : ''} */}
             {/* BG */}
                 {/* BG */}
-                <div className='absolute inset-0'>
+                <div className='absolute    inset-0'>
                     <img
                         src={theme === 'dark' ? darkThemeHeroPic : lightThemeHeroPic}
                         alt="bg pic" className='w-full h-full  opacity-40 ' />
@@ -85,7 +85,7 @@
                             <div className='flex justify-start items-center gap-6 mt-6 animate-fade-in animation-delay-200 '>
                                 <div className='px-5 py-2 '>
                                     <button className='animated-border-btn'>
-                                        <span className='btn-inner-content text-xs sm:text-sm'> Connect with me</span>
+                                        <span className='btn-inner-content text-xs sm:text-sm'><a href="#connect"> Connect with me</a></span>
                                     </button>
                                 </div>
 
