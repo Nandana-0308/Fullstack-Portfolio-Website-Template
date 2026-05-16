@@ -60,7 +60,7 @@
                         {/* Text Content */}
                         <div className='space-y-3 ' style={{ fontFamily: "'Share Tech Mono', monospace" }}>
                             {/* title  */}
-                            <div className=' px-5 py-10  relative w-full sm:flex'>
+                            <div className=' px-3 py-8  relative w-full sm:flex'>
                                 <span className={`text-[var(--color-color6)] items-center gap-2 rounded-full px-10 py-3 ${theme == 'light' ? 'bg-black/4' : 'bg-white/5'} border border-white/10`}>
                                     Software Engineer | Cyber Security
                                 </span>
