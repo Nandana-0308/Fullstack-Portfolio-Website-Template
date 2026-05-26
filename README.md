@@ -220,7 +220,7 @@ POST /api/contact
 
 # 📸 Screenshots
 
-Add project screenshots here.
+
 
 ---
 
