@@ -6,7 +6,7 @@ import demoImage from "../assets/projectImageOrVideo/webimagedemo.jpg";
 
 export const APP_DATA = {
   profilePic: profile,
-  owner: "Sahal P T",
+  owner: "User XXX",
   logo: logo,
 
   skills: [
